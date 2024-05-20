@@ -1,0 +1,99 @@
+<div class="content-wrapper">
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="d-flex justify-content-center"><h4 class="fw-bold py-3 mb-2 mt-4">LISTE DES COMPTES</h4></div>
+
+
+    <div class="card">
+      <div class="card-header">
+        <!--form for search -->
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-2">
+            <div class="input-group input-group-merge">
+
+              <input
+                type="text"
+                class="form-control"
+                id="basic-icon-default-fullname"
+                placeholder="Chercher par code site ou Réf"
+              />
+
+              <span class="input-group-text searchspan"
+                ><mat-icon>search</mat-icon></span>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-lg-5"></div>
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <button type="button" class="btn btn-outline-primary btnAdd" (click)="openDialogAddUser()">
+              <mat-icon [fontSet]="'material-icons-outlined'">person_add</mat-icon>
+              Nouveau utilisateur</button>
+          </div>
+
+        </div>
+        <!--end form-->
+      </div>
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th *ngFor="let item of displayedColumns">{{ item }}</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">
+            <tr *ngFor="let row of dataSource">
+              <td>{{ row['firstname'] }}</td>
+              <td>{{ row['lastname'] }}</td>
+              <td>{{ row['tel'] }}</td>
+              <td>{{ row['role'] }}</td>
+              <td>
+                <div class="row">
+                  <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <button type="button" class="btn btn-secondary btn-sm action_button"><i class="material-icons icon">edit</i></button>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <button type="button" class="btn btn-danger btn-sm action_button" (click)="openDialogDelete()">
+                      <i class="material-icons icon">delete</i>
+                    </button>
+                  </div>
+                </div>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-footer">
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4">
+
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4"></div>
+          <div class="col-sm-12 col-md-12 col-lg-4 text-lg-right text-md-center text-sm-center">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-lg-end justify-content-md-center justify-content-sm-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

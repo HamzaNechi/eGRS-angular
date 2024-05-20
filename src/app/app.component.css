@@ -1,0 +1,73 @@
+.content{
+  padding-top: 10px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 10px;
+}
+
+
+
+
+mat-sidenav-container {
+  background-color: rgb(243, 241, 241);
+  height: 100vh;
+}
+
+
+mat-sidenav, mat-sidenav-content{
+  transition: all 500ms ease-in-out;
+}
+
+
+.sidenav{
+  width: 250px;
+}
+
+
+@media screen and (max-width: 900px) {
+  .sidenav {
+    width: 60%; /* Réduire la largeur de la navigation latérale pour les petits écrans */
+  }
+
+
+}
+
+
+@media screen and (max-width: 500px) {
+  .sidenav {
+    width: 100%; /* Réduire la largeur de la navigation latérale pour les petits écrans */
+  }
+
+  mat-sidenav-container {
+    background-color: rgb(243, 241, 241);
+    height: 100vh;
+  }
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+.toolbar
+{
+  background-color: black;
+  border-radius: 0.8rem;
+  color: #ff6e01;
+  margin-bottom: 15px;
+}
+
+
+mat-sidenav{
+  background-color: black;
+  color: azure;
+}
+
+
+
+img {
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 10px;
+}

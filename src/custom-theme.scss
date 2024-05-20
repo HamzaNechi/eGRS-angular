@@ -1,0 +1,95 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$mat-primary: (
+  main: #ff6e01,
+  lighter: #fda35fc7,
+  darker: #d85e00,
+  200: #ff6e01,
+  contrast: (
+    main: rgb(33, 32, 32),
+    lighter: #00000000,
+    darker: #ffffffff,
+  )
+);
+
+$eGRS-primary: mat.define-palette($mat-primary, main, lighter, darker);
+$eGRS-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$eGRS-warn: mat.define-palette(mat.$red-palette);
+
+$typography-config: (
+  font-family: 'Public Sans, sans-serif',
+  display-4: (
+    font-size: 112px,
+    font-weight: 300,
+    line-height: 112px,
+  ),
+  display-3: (
+    font-size: 56px,
+    font-weight: 400,
+    line-height: 56px,
+  ),
+  display-2: (
+    font-size: 45px,
+    font-weight: 400,
+    line-height: 48px,
+  ),
+  display-1: (
+    font-size: 34px,
+    font-weight: 400,
+    line-height: 40px,
+  ),
+  headline: (
+    font-size: 24px,
+    font-weight: 400,
+    line-height: 32px,
+  ),
+  title: (
+    font-size: 20px,
+    font-weight: 500,
+    line-height: 28px,
+  ),
+  subheading-2: (
+    font-size: 16px,
+    font-weight: 400,
+    line-height: 24px,
+  ),
+  subheading-1: (
+    font-size: 15px,
+    font-weight: 400,
+    line-height: 24px,
+  ),
+  body-2: (
+    font-size: 14px,
+    font-weight: 500,
+    line-height: 24px,
+  ),
+  body-1: (
+    font-size: 14px,
+    font-weight: 400,
+    line-height: 20px,
+  ),
+  caption: (
+    font-size: 12px,
+    font-weight: 400,
+    line-height: 20px,
+  ),
+  button: (
+    font-size: 14px,
+    font-weight: 500,
+    line-height: 24px,
+  )
+);
+
+$eGRS-theme: mat.define-light-theme((
+  color: (
+    primary: $eGRS-primary,
+    accent: $eGRS-accent,
+    warn: $eGRS-warn,
+  ),
+  typography: $typography-config,
+  density: 0
+));
+
+@include mat.all-component-themes($eGRS-theme);

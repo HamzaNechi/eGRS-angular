@@ -1,0 +1,15 @@
+.primary-button
+{
+  background-color: #f44b31;
+  color: white;
+}
+
+.form-control:focus {
+  border-color: #FF0000; /* Couleur de la bordure en focus */
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6); /* Effet d'ombre */
+}
+
+.form-select:focus {
+  border-color: #FF0000; /* Couleur de la bordure en focus */
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6); /* Effet d'ombre */
+}
