@@ -1,0 +1,53 @@
+.primary-button
+{
+  background-color: #f44b31;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 7px;
+  border-color: #f44b31;
+}
+
+
+
+.container-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 500px;
+  overflow: hidden; /* S'assure que tout débordement est masqué */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.container-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* S'assure que l'image couvre tout le conteneur */
+  object-position: center; /* Centre l'image dans le conteneur */
+  display: block;
+}
+
+
+.mat-dialog-informations{
+  width: 100%;
+  padding: 20px;
+}
+
+
+.info{
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(4, 4, 4, 0.621);
+}
+
+
+.title{
+  text-align: start;
+  color: black;
+  font-weight: 600;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

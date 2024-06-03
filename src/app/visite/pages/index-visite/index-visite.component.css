@@ -1,0 +1,138 @@
+.card-header
+{
+  background-color: white;
+}
+
+.info-visit{
+  width: 100%;
+  height: auto;
+  text-align: start;
+}
+
+.middle{
+  vertical-align: middle;
+  color: orangered;
+}
+
+
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  text-align: center;
+  justify-content: space-around;
+}
+.wrapper > div {
+  flex: 1 1 33%;
+}
+
+.site, .responsable {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Pour centrer horizontalement */
+}
+
+
+.site-icon, .responsable-icon {
+  background-color: rgba(222, 222, 222, 0.582);
+  color: orangered;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Pour centrer l'icône à l'intérieur du cercle */
+}
+
+.site p, .responsable p {
+  margin-top: 10px;
+  font-size: 16;
+  font-weight: 500;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.date{
+  padding: 3px;
+  text-align: end;
+  color: grey;
+}
+
+.card-main{
+  height: auto;
+  padding-bottom: 40px;
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+}
+
+.container-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 250px;
+  overflow: hidden; /* S'assure que tout débordement est masqué */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* S'assure que l'image couvre tout le conteneur */
+  object-position: center; /* Centre l'image dans le conteneur */
+  display: block;
+}
+
+.card-body {
+  flex: 1;
+  padding-bottom: 0px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.footer .btn {
+  border-radius: 0; /* pour que les boutons remplissent toute la largeur */
+  margin: 0; /* pour éviter les marges supplémentaires */
+}
+
+
+.btn-danger {
+  flex: 1;
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger i {
+  vertical-align: middle;
+}
+
+.index-info{
+  display: flex;
+  justify-content: stretch;
+}
+
+
+.form-control:focus {
+  border-color: #ff6200; /* Couleur de la bordure en focus */
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 72, 0, 0.6); /* Effet d'ombre */
+}
+
+.searchspan{
+  background-color: white;
+}

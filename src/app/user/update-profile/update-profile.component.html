@@ -1,0 +1,54 @@
+
+<h2 mat-dialog-title>Modifier la description du profile <strong>{{ this.data.profile }}</strong></h2>
+<form (ngSubmit)="onSubmitForm(form)" #form="ngForm">
+  <mat-dialog-content>
+
+      <div class="mb-3">
+        <label class="form-label">Profile</label>
+        <input type="text"
+        class="form-control"
+        placeholder="Profile"
+        [(ngModel)]="profileForm.profile"
+        disabled
+        name="profile" #profile="ngModel"
+        minlength="4"
+        required />
+
+        <div *ngIf="profile.touched && !profile.valid">
+          <ul class="list-unstyled">
+            <li *ngIf="profile.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+            <li *ngIf="profile.errors?.['minlength']" class="list-unstyled-item">Le profile doit contenir au moins 4 caractères</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control"
+        rows="3"
+        [(ngModel)]="profileForm.description"
+        placeholder="Description"
+        name="description"
+        #description="ngModel"
+        minlength="10"
+        required> </textarea>
+
+        <div *ngIf="description.touched && !description.valid">
+          <ul class="list-unstyled">
+            <li *ngIf="description.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+            <li *ngIf="description.errors?.['minlength']" class="list-unstyled-item">La description doit contenir au moins 10 caractères</li>
+          </ul>
+        </div>
+      </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions [align]="'end'" style="padding-top: 50px;">
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button mat-button
+    cdkFocusInitial class="primary-button"
+    [disabled]="form.invalid"
+    type="submit">
+      Modifier
+    </button>
+  </mat-dialog-actions>
+</form>

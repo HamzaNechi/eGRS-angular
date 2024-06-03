@@ -1,0 +1,43 @@
+.breadcrumb-alert {
+  display: inline-block; /* Ajuste la largeur en fonction du contenu */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.3rem;
+  padding-top: 0.8rem;
+  height: 50px;
+  background-color: white;
+  border-radius: 10px;
+  white-space: nowrap; /* Empêche les éléments de se déborder sur une nouvelle ligne */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.breadcrumb{
+  color: rgba(0, 0, 0, 0.634);
+}
+
+.item-active{
+  background-color: coral;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.card-header{
+  background-color: white;
+}
+
+
+
+
+
+.info{
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(4, 4, 4, 0.621);
+}
+
+
+
+
+
+

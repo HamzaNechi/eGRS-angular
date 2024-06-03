@@ -1,0 +1,51 @@
+.header {
+  background-color: #ffffff;
+  padding-top: 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #afadad;
+  text-align: center;
+}
+
+.header p {
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.dialog-content {
+  padding: 10px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.dialog-title {
+  margin-top: 15px;
+  font-size: 1em;
+  font-weight: bold;
+  text-justify: unset;
+}
+
+.footer {
+  background-color: #ffffff;
+  padding: 5px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  justify-content: center;
+}
+
+.dialog-actions {
+  justify-content: flex-end;
+}
+
+.primary-button {
+  background-color: #21c179;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #21c179;
+}

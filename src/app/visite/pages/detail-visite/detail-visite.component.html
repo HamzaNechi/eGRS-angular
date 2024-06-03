@@ -1,0 +1,123 @@
+<h2 mat-dialog-title>Détails visite</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container-image">
+    <img [src]="'http://localhost:8089/egrs/api/images/' + data.photoCompteur" class="card-img-top" alt="...">
+  </div>
+
+  <div class="mat-dialog-informations">
+
+    <h2 class="title">Informations :</h2>
+    <ul class="list-group list-group-flush" style="padding: 20px;">
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Index</h6>
+            <span class="info">{{ data.indexCompteur }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Site</h6>
+            <span class="info">{{ data.site.siteCode }}</span>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Responsable</h6>
+            <span class="info">{{ data.login.login }}</span>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Date d'insertion</h6>
+            <span class="info">{{ data.dateInsertion | date : 'dd-MM-yyyy' }}</span>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Ampérage OTN</h6>
+            <span class="info">{{ data.otn }} Amp</span>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Ampérage OO</h6>
+            <span class="info">{{ data.oo }} Amp</span>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Ampérage TT</h6>
+            <span class="info">{{ data.tt }} Amp</span>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Action</h6>
+            <span class="info">{{ data.tag }}</span>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="d-flex justify-content-between">
+            <h6>Commentaire</h6>
+            <span class="info">{{ data.commentaire }}</span>
+          </li>
+        </ul>
+      </li>
+
+
+
+
+
+
+
+
+
+
+    </ul>
+  </div>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end" style="padding-top: 80px;">
+  <button mat-button mat-dialog-close class="primary-button">Fermer</button>
+</mat-dialog-actions>

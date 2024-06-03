@@ -1,0 +1,193 @@
+
+<div class="content-wrapper">
+  <div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="position-relative">
+      <div class="position-absolute top-0 end-0">
+        <div class="breadcrumb-alert shadow-lg" role="alert">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a routerLink="/home/dashboard" class="alert-link">
+                  <i class="material-icons">home</i>
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <a routerLink="/home/site" class="alert-link">
+
+                  Sites
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page"><span class="badge fw-medium fs-6 text-dark item-active">{{ this.site?.siteCode }}</span></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="container text-center" style="padding-top: 90px;">
+      <!--Détail site bloc-->
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Détails site</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Code site</h6>
+                    <span class="info">{{ this.site?.siteCode }}</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Réfférence</h6>
+                    <span class="info">{{ this.site?.elecMeterRef }}</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Nom</h6>
+                    <span class="info">{{ this.site?.siteName }}</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Direction</h6>
+                    <span class="info">{{ this.site?.directionId?.description }}</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Facture réelle</h6>
+                    <span class="badge text-bg-primary" *ngIf="this.district_and_invoice.invoices > 0" style="align-content: center; margin: 3px;">{{ this.district_and_invoice.invoices }} Factures</span>
+                    <span class="badge text-bg-secondary" *ngIf="this.district_and_invoice.invoices == 0" style="align-content: center; margin: 3px;">{{ this.district_and_invoice.invoices }} Factures</span>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>District</h6>
+                    <span class="info">{{ this.district_and_invoice.district }}</span>
+
+                  </li>
+                </ul>
+              </li>
+
+
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Status</h6>
+                    <span [ngClass]="{
+                      'badge': true,
+                      'bg-success': this.site?.statusId?.description === 'Actif',
+                      'bg-danger': this.site?.statusId?.description === 'Résilié',
+                      'bg-dark': this.site?.statusId?.description=== 'Non identifié'
+                    }" style="align-content: center; margin: 3px;">
+                      {{ this.site?.statusId?.description}}
+                    </span>
+                  </li>
+                </ul>
+              </li>
+
+
+
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Configuration</h6>
+                    <span class="info">{{ this.site?.configuration }}</span>
+                  </li>
+                </ul>
+              </li>
+
+
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Estimation Consommation</h6>
+                    <span class="info">{{ this.site?.estimatedConsumption }} Kwh</span>
+                  </li>
+                </ul>
+              </li>
+
+
+
+              <li class="list-group-item">
+                <ul class="list-group">
+                  <li class="d-flex justify-content-between">
+                    <h6>Type Network</h6>
+                    <span class="info">{{ this.site?.networkTypeId?.description }}</span>
+                  </li>
+                </ul>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+       <!--Factures site bloc-->
+
+
+       <div class="row pt-5 pb-5">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Liste des factures</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr >
+                  <th scope="col">Type</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Consommation</th>
+                  <th scope="col">Montant</th>
+                  <th scope="col">Crédit</th>
+                  <th scope="col">Tva</th>
+                  <th scope="col">Montant finale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of listFacture">
+                  <td>{{ getTypeFacture(row['itemType'])}}</td>
+                  <td>{{ getMonth(row['invoice']['month']) }} {{ row['invoice']['year'] }}</td>
+                  <td>{{ row['consumptionKwh'] }} Kwh</td>
+                  <td>{{ this.convertEnTnd(row['consumptionAmount']!)}} TND</td>
+                  <td>{{ this.convertEnTnd(row['credit']!)}} TND</td>
+                  <td>{{ this.convertEnTnd(row['tva']!)}} TND</td>
+                  <th scope="row">{{ this.convertEnTnd(row['finalSale']!)}} TND</th>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!--End factures-->
+    </div>
+
+
+  </div>
+
+
+
+</div>

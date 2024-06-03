@@ -1,0 +1,32 @@
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" class="sidenav" [style.width]="sidenavWidth()">
+    <app-sidebar [collapsed]="collapsed()"></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <mat-toolbar class="mat-elevation-z5 toolbar">
+      <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon class="menu-icon">menu</mat-icon>
+      </button>
+
+      <h1>eGRS</h1>
+      <span class="example-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <img src="/assets/moi.jpg" width="30" height="30" />
+    <span>Nechi Hamza</span>
+  </button>
+  <button mat-menu-item (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+    <span>Déconnexion</span>
+  </button>
+</mat-menu>

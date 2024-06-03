@@ -1,0 +1,156 @@
+<div class="content-wrapper">
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="d-flex justify-content-center" style="padding-bottom: 50px;">
+      <h4 class="fw-bold py-3 mb-2 mt-4">Gérer vos comptes</h4>
+    </div>
+
+
+
+    <h3>
+      Gestion des profiles
+      <small class="text-body-secondary">Rôle des utilisateurs</small>
+    </h3>
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <div class="justify-content-start">
+        <app-display-profile></app-display-profile>
+      </div>
+    </div>
+
+    <h3>
+      Gestion des utilisateurs
+      <small class="text-body-secondary">Acteurs dans l'application</small>
+    </h3>
+
+    <div class="card" style="margin-top: 20px; margin-bottom: 50px;">
+      <div class="card-header">
+
+        <!--form for search -->
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-2">
+            <div class="input-group input-group-merge">
+
+              <input
+                type="text"
+                class="form-control"
+                id="basic-icon-default-fullname"
+                placeholder="Chercher par nom"
+                [(ngModel)]="searchName"
+                (input)="searchUserByLogin()"
+              />
+
+              <span class="input-group-text searchspan"
+                ><mat-icon>search</mat-icon></span>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-lg-5"></div>
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <button type="button" class="btn btn-outline-primary btnAdd" (click)="openDialogAddUser()">
+              <mat-icon [fontSet]="'material-icons-outlined'">person_add</mat-icon>
+              Nouveau utilisateur</button>
+          </div>
+
+        </div>
+        <!--end form-->
+      </div>
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th *ngFor="let item of displayedColumns">{{ item }}</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">
+            <tr *ngFor="let row of dataSource">
+              <td>{{ row['login'] }}</td>
+              <td *ngIf="row['firstName'] != null || row['lastName'] != null">{{ row['firstName'] }} {{ row['lastName'] }}</td>
+              <td *ngIf="row['firstName'] == null && row['lastName'] == null">
+                <span class="badge bg-dark">
+                  NULL
+                </span>
+              </td>
+
+
+              <td>{{ row['profile']['profile']}} </td>
+
+
+              <td>
+                <div class="position-relative">
+
+                  <span *ngIf="row['status'] == 0" class="position-absolute top-0 start-50 translate-middle p-2 bg-danger border border-light rounded-circle">
+
+                  </span>
+
+                  <span *ngIf="row['status'] == 1" class="position-absolute top-0 start-50 translate-middle p-2 bg-success border border-light rounded-circle">
+
+                  </span>
+                </div>
+              </td>
+
+
+
+              <td *ngIf="row['email'] != null">{{ row['email'] }}</td>
+              <td *ngIf="row['email'] == null">
+                <i class="material-icons">do_not_disturb</i>
+              </td>
+
+              <td>
+                <div class="row">
+                  <div class="col-sm-1 col-md-4 col-lg-4 col-xl-2">
+                    <button type="button" class="btn btn-secondary btn-sm action_button" (click)="openDialogUpdateUser(row)">
+                      <i class="material-icons icon">edit</i>
+                    </button>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;
+                  <div class="col-sm-1 col-md-4 col-lg-4 col-xl-2">
+                    <button type="button" class="btn btn-danger btn-sm action_button" (click)="openDialogDelete(row['login'])">
+                      <i class="material-icons icon">delete</i>
+                    </button>
+                  </div>
+                </div>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-footer">
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4">
+
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4"></div>
+          <div class="col-sm-12 col-md-12 col-lg-4 text-lg-right text-md-center text-sm-center">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-lg-end justify-content-md-center justify-content-sm-center">
+                <li class="page-item">
+                  <a class="page-link" (click)="previousPage()">
+                    <span aria-hidden="true" style="font-size: 16px;">&laquo;</span>
+                  </a>
+                </li>
+
+                <li *ngFor="let p of pages" [class.page-item]="true"
+                                            [class.active]="p === page+1">
+                  <a class="page-link" (click)="indexPage(p-1)">{{ p }}</a>
+                </li>
+
+                <li class="page-item">
+                  <a class="page-link" (click)="nextPage()" >
+                    <span aria-hidden="true" style="font-size: 16px;">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,111 @@
+
+<h2 mat-dialog-title>Modifier l'utilisateur {{ data.login }}</h2>
+<form (ngSubmit)="onSubmitForm(form)" #form="ngForm">
+<mat-dialog-content>
+
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <input type="text"
+      class="form-control"
+      placeholder="Nom"
+      [(ngModel)]="userForm.firstName"
+      name="lastName" #lastName="ngModel"
+      minlength="4"
+      required>
+
+      <div *ngIf="lastName.touched && !lastName.valid">
+        <ul class="list-unstyled">
+          <li *ngIf="lastName.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+          <li *ngIf="lastName.errors?.['minlength']" class="list-unstyled-item">Le nom doit contenir au moins 4 caractères</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prénom</label>
+      <input type="text" class="form-control"
+      [(ngModel)]="userForm.lastName"
+      placeholder="Prénom"
+      name="firstName"
+      #firstName="ngModel"
+      minlength="4"
+      required>
+
+      <div *ngIf="lastName.touched && !lastName.valid">
+        <ul class="list-unstyled">
+          <li *ngIf="firstName.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+          <li *ngIf="firstName.errors?.['minlength']" class="list-unstyled-item">Le prénom doit contenir au moins 4 caractères</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <label class="form-label">Role</label>
+      <select class="form-select" [(ngModel)]="userForm.profile.profileId"  name="profile" #profile="ngModel"
+
+      required>
+        <option *ngFor="let item of profileList" [value]="item.profileId">{{ item['profile'] }}</option>
+      </select>
+
+      <div *ngIf="profile.touched && !profile.valid">
+        <ul class="list-unstyled">
+          <li *ngIf="profile.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div class="mb-3">
+      <label class="form-label" >Login</label>
+      <input type="text" class="form-control" placeholder="Login"
+      [(ngModel)]="userForm.login"  name="login" #login="ngModel"
+      minlength="5"
+      disabled
+      required
+      >
+
+      <div *ngIf="login.touched && !login.valid">
+        <ul class="list-unstyled">
+          <li *ngIf="login.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+          <li *ngIf="login.errors?.['minlength']" class="list-unstyled-item">Le login doit contenir au moins 5 caractères</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control"
+      placeholder="name@example.com"
+      [(ngModel)]="userForm.email"  name="email" #email="ngModel"
+      minlength="5"
+      required
+      email>
+
+      <div *ngIf="email.touched && !email.valid">
+        <ul class="list-unstyled">
+          <li *ngIf="email.errors?.['required']" class="list-unstyled-item">Champ Obligatoire !</li>
+          <li *ngIf="email.errors?.['minlength']" class="list-unstyled-item">L'email doit contenir au moins 5 caractères</li>
+          <li *ngIf="email.errors?.['email']" class="list-unstyled-item">L'email doit étre valide</li>
+        </ul>
+      </div>
+    </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions [align]="'end'" style="padding-top: 50px;">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button
+  cdkFocusInitial class="primary-button"
+  [disabled]="form.invalid"
+  type="submit">
+    Modifier
+  </button>
+</mat-dialog-actions>
+</form>
+

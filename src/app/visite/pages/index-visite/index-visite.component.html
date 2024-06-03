@@ -1,0 +1,75 @@
+<div class="content-wrapper">
+  <div class="container-xxl flex-grow-1 container-p-y pt-4">
+    <div class="card card-main">
+      <div class="card-header p-3">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <h5 class="card-title">Liste des visites terrain</h5>
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <!--form for search -->
+            <div class="input-group input-group-merge">
+
+              <input
+                type="text"
+                class="form-control"
+                id="basic-icon-default-fullname"
+                placeholder="Chercher par code site"
+                [(ngModel)]="searchField"
+                (input)="searchByCodeSite()"
+              />
+
+              <span class="input-group-text searchspan">
+                <mat-icon>search</mat-icon>
+              </span>
+            </div>
+            <!--end form-->
+          </div>
+        </div>
+
+      </div>
+      <div class="card-body">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12" style="padding-top: 20px;" *ngFor="let item of listVisites">
+              <!--card item-->
+              <div class="card">
+                <div class="container-image">
+                  <img [src]="'http://localhost:8089/egrs/api/images/' + item.photoCompteur" class="card-img-top" alt="...">
+                </div>
+
+                <div class="card-body">
+                  <div class="info-visit">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="index-info"><i class="material-icons middle">energy_savings_leaf</i> {{ item['indexCompteur']}}</h5>
+                      </div>
+                      <div class="col">
+                        <p class="date">{{ item['dateInsertion'] |  date:'dd-MM-yyyy'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="wrapper">
+                      <div class="site">
+                        <div class="site-icon"><i class="material-icons">location_city</i></div>
+                        <p>{{ item['site']['siteCode'] }}</p>
+                      </div>
+                      <div class="responsable">
+                        <div class="responsable-icon"><i class="material-icons">manage_accounts</i></div>
+                        <p>{{ item['login']['login'] }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="footer">
+                  <button type="button" class="btn btn-danger" (click)="openDialogDelete(item.visiteId)"><i class="material-icons">delete</i> Supprimer</button>
+                  <button type="button" class="btn btn-warning" (click)="openDialogDetail(item)"><i class="material-icons">remove_red_eye</i></button>
+                </div>
+              </div>
+              <!--card item finish-->
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
