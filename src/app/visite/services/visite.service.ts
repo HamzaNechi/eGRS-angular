@@ -1,40 +1,44 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisiteService {
 
-  constructor(private http : HttpClient) { }
+  private baseUrl: string;
 
-  baseUrl= "http://localhost:8089/egrs/visites/";
+  constructor(private http : HttpClient) {
+    this.baseUrl = `${environment.apiURL}visites/`;
+  }
+
+
 
 
   getAllVisites(){
-    const reqheaders = new HttpHeaders({
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YUFkbWluIiwiaWF0IjoxNzE3NDEzMTUwLCJleHAiOjE3MTgwMTc5NTB9.oO7x-o6zAgevvRjZPY2h6mpFlnEVSXpgoKkyBvCDfvU`
-    })
-
-    return this.http.get(this.baseUrl, {headers : reqheaders, observe: 'response'}).pipe();
+    return this.http.get(this.baseUrl, {observe: 'response'}).pipe();
   }
 
 
 
   deleteVisite(visiteId: number){
-    const reqheaders = new HttpHeaders({
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YUFkbWluIiwiaWF0IjoxNzE3NDEzMTUwLCJleHAiOjE3MTgwMTc5NTB9.oO7x-o6zAgevvRjZPY2h6mpFlnEVSXpgoKkyBvCDfvU`
-    })
-
-    return this.http.delete(`${this.baseUrl}admin/${visiteId}`, {headers : reqheaders, observe: 'response'}).pipe();
+    return this.http.delete(`${this.baseUrl}admin/${visiteId}`, {observe: 'response'}).pipe();
   }
 
 
   searchVisite(codeSite: string){
-    const reqheaders = new HttpHeaders({
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YUFkbWluIiwiaWF0IjoxNzE3NDEzMTUwLCJleHAiOjE3MTgwMTc5NTB9.oO7x-o6zAgevvRjZPY2h6mpFlnEVSXpgoKkyBvCDfvU`
-    })
+    return this.http.get(`${this.baseUrl}${codeSite}`, { observe: 'response'}).pipe();
+  }
 
-    return this.http.get(`${this.baseUrl}${codeSite}`, {headers : reqheaders, observe: 'response'}).pipe();
+
+  exportToExcel(filterRequest: any){
+    return this.http.post(`${this.baseUrl}export/excel`,filterRequest, { responseType: 'blob' });
+  }
+
+
+
+  filterVisite(filterRequest: any){
+    return this.http.post(`${this.baseUrl}filtre`, filterRequest , {observe : 'response'}).pipe();
   }
 }

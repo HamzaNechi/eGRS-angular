@@ -1,1 +1,54 @@
-<p>index works!</p>
+<div class="container">
+
+  <div class="consommation-total">
+    <div><h5>La consommation total depuis le premier Janvier : {{ this.dataTotalConsommation.consommationTotalKwh}} KWH / {{ this.dataTotalConsommation.consommationTotalTnd}}  TND</h5></div>
+
+  </div>
+
+  <div class="content-widgets">
+    <div class="widget">
+      <h6>Bas Tension ( en Kwh ) :</h6>
+      <i class="material-icons">energy_savings_leaf</i>
+      <p>{{ this.dataWidgets[0].btKwh }} Kwh</p>
+    </div>
+    <div class="widget">
+      <h6>Bas Tension ( en TND ) :</h6>
+      <i class="material-icons">monetization_on</i>
+      <p>{{ this.dataWidgets[0].btTnd }}  TND</p>
+    </div>
+    <div class="widget">
+      <h6>Moyenne Tension ( en Kwh ) :</h6>
+      <i class="material-icons">energy_savings_leaf</i>
+      <p>{{ this.dataWidgets[1].mtKwh }}  Kwh</p>
+    </div>
+    <div class="widget">
+      <h6>Moyenne Tension ( en Kwh ) :</h6>
+      <i class="material-icons">monetization_on</i>
+      <p>{{ this.dataWidgets[1].mtTnd }} TND</p>
+    </div>
+  </div>
+
+
+  <div class="content-graph">
+    <div class="graph-consommation">
+      <canvas baseChart class="line-chart"
+        [type]="'line'"
+        [data]="lineChartData2"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+      </canvas>
+    </div>
+
+
+    <div class="graph-alerts">
+        <canvas baseChart
+          [type]="'pie'"
+          [datasets]="pieChartDatasets"
+          [labels]="pieChartLabels"
+          [options]="pieChartOptions2"
+          [legend]="pieChartLegend"
+          >
+        </canvas>
+    </div>
+  </div>
+</div>

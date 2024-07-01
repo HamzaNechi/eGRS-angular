@@ -31,7 +31,8 @@ export class UpdateComponent {
       profile : this.data.profile.profile,
       description : this.data.profile.description
     },
-    status : this.data.status
+    status : this.data.status,
+    password : this.data.password
   };
 
 
@@ -58,7 +59,7 @@ export class UpdateComponent {
       this.userForm.login = this.data.login;
       this.userForm.email =form.value.email;
       this.userForm.firstName =form.value.firstName;
-      this.userForm.password =form.value.password;
+      this.userForm.password =this.data.password;
       this.userForm.lastName =form.value.lastName;
       this.userForm.profile.profileId = form.value.profile;
       this.userForm.isAd = form.value.profile == 1 ? 1 : 0;

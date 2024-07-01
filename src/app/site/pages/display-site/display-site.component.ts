@@ -20,6 +20,7 @@ export class DisplaySiteComponent {
   pages: number[] = [];
 
   searchName = '';
+  filterDate = '';
 
   constructor(
     public dialog: MatDialog,
@@ -31,20 +32,7 @@ export class DisplaySiteComponent {
     this.refreshSiteList();
   }
 
-  liveSearchSite(){
-    if(this.searchName != ''){
-      this.siteService.searchSitesByCodeOrRef(this.page, this.size, this.searchName).subscribe((data: any) => {
-        this.siteList = data.body.content;
-        this.totalPages = data.body.totalPages;
-        this.updatePages();
-      });
-    } else {
-      this.page = 0;
-      this.pages = [];
-      this.totalPages = 0;
-      this.refreshSiteList();
-    }
-  }
+
 
   refreshSiteList(){
     this.siteService.getAllSites(this.page, this.size).subscribe({
@@ -64,8 +52,35 @@ export class DisplaySiteComponent {
     this.router.navigate(['/home/site/details'], {state : site});
   }
 
+  // filter and search
+  liveSearchSite(){
+    if(this.searchName != ''){
+      this.siteService.searchSitesByCodeOrRef(this.page, this.size, this.searchName).subscribe((data: any) => {
+        this.siteList = data.body.content;
+        this.totalPages = data.body.totalPages;
+        this.updatePages();
+      });
+    } else {
+      this.page = 0;
+      this.pages = [];
+      this.totalPages = 0;
+      this.refreshSiteList();
+    }
+  }
 
 
+  filterSiteByVisiteAndDate(reqFilter: string){
+    this.siteService.getAllSiteNonEncoreVisiter(0 , this.size, this.filterDate, reqFilter).subscribe({
+      next : (response: any) => {
+        this.siteList = response.body.content;
+        this.totalPages = response.body.totalPages;
+        this.updatePages();
+      },
+      error : (error: any ) => {
+        console.log('response error filtre = ',error);
+      }
+    })
+  }
 
   // pagination
 

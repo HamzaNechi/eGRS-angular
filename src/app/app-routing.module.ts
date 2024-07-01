@@ -9,6 +9,8 @@ import { SiteIndexComponent } from './site/pages/index/index.component';
 import { DetailSiteComponent } from './site/pages/details/details.component';
 import { DisplaySiteComponent } from './site/pages/display-site/display-site.component';
 import { authGuard } from './auth/auth.guard';
+import { IndexReclamationComponent } from './reclamation/pages/index-reclamation/index.component';
+import { IndexAlertComponent } from './alert/pages/index-alert/index-alert.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -32,6 +34,8 @@ const routes: Routes = [
         ]
       },
       { path: 'visite', component: IndexVisiteComponent, canActivate : [authGuard] },
+      { path: 'reclamation', component: IndexReclamationComponent, canActivate : [authGuard] },
+      { path: 'alerts', component: IndexAlertComponent, canActivate : [authGuard] },
 
     ]
   },

@@ -6,6 +6,7 @@ import { DetailVisiteComponent } from '../detail-visite/detail-visite.component'
 import { AskForDeleteComponent } from '../../../core/ask-for-delete/ask-for-delete.component';
 import { SuccessOperationComponent } from '../../../core/success-operation/success-operation.component';
 import { EchecOperationComponent } from '../../../core/echec-operation/echec-operation.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-index-visite',
@@ -17,6 +18,16 @@ export class IndexVisiteComponent implements OnInit{
 
   listVisites : VisiteModel[] = [];
   searchField : string = '';
+  maxIndex : number = 0;
+  minIndex : number =  0;
+
+  filterSpecification = {
+    index : this.minIndex,
+    siteCode : '',
+    dateInsertion : '',
+    responsable :''
+  }
+
 
   constructor(private visiteService: VisiteService,
     public dialog: MatDialog
@@ -33,9 +44,12 @@ export class IndexVisiteComponent implements OnInit{
   getAllVisites(){
     this.visiteService.getAllVisites().subscribe({
       next: (response: any) =>{
-        this.listVisites = response.body
+        this.listVisites = response.body;
+        this.maxIndex  = Math.max(...this.listVisites.map(visite => visite.indexCompteur));
+        this.minIndex  = Math.min(...this.listVisites.map(visite => visite.indexCompteur));
       }
-    })
+    });
+
   }
 
 
@@ -48,7 +62,10 @@ export class IndexVisiteComponent implements OnInit{
       error: (error : any) => {
         console.log('error search visite = ',error);
       }
-    })
+    });
+
+    this.maxIndex  = this.listVisites.length > 0 ?  Math.max(...this.listVisites.map(visite => visite.indexCompteur)) : 0;
+    this.minIndex  = this.listVisites.length > 0 ?  Math.min(...this.listVisites.map(visite => visite.indexCompteur)) : 0;
   }
 
 
@@ -78,6 +95,65 @@ export class IndexVisiteComponent implements OnInit{
       }
     })
   }
+
+
+  exportToExcel(){
+    this.visiteService.exportToExcel(this.filterSpecification).subscribe(
+      {
+        next : (response: any) => {
+          const blob = new Blob([response], { type: 'application/octet-stream' });
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'visites.xlsx';
+          a.click();
+          window.URL.revokeObjectURL(url);
+        },
+        error : (error : any) => {
+          console.log('error'+error)
+        }
+      }
+    )
+  }
+
+
+
+  /**** filter method */
+
+  filterVisiteMethod(form : NgForm){
+    this.filterSpecification.index = form.value.index;
+    this.filterSpecification.dateInsertion = form.value.dateInsertion;
+    this.filterSpecification.responsable = form.value.responsable;
+    this.filterSpecification.siteCode = form.value.siteCode;
+
+    this.visiteService.filterVisite(this.filterSpecification).subscribe(
+      {
+        next : (response : any) => {
+          console.log("response filtre visite = ",response);
+          this.listVisites = response.body
+        },
+        error : (error : any)=> {
+          console.log(error);
+        }
+      }
+    )
+  }
+
+
+  onChangeRange(value : number){
+    this.filterSpecification.index = value;
+  }
+
+  resetFiltre(){
+    this.filterSpecification = {
+      index : 0,
+      siteCode : '',
+      dateInsertion : '',
+      responsable :''
+    }
+    this.getAllVisites();
+  }
+  /**  end filtre method */
 
 
   openDialogDelete(visiteId: number) {

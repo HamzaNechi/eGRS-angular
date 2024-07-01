@@ -46,8 +46,18 @@ export class SidebarComponent {
       label : 'Visites',
       route : 'visite'
     },
+    {
+      icon : 'notifications',
+      label : 'Alerts',
+      route : 'alerts'
+    },
+    {
+      icon : 'announcement',
+      label : 'Réclamations',
+      route : 'reclamation'
+    },
   ]);
 
 
-  profilePicSize = computed(() => this.sideNavCollapsed() ? '32' : '100');
+  profilePicSize = computed(() => this.sideNavCollapsed() ? '62' : '130');
 }

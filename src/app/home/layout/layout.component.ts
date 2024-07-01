@@ -19,6 +19,7 @@ export class LayoutComponent {
 
   collapsed = signal(false);
   mobileQuery: MediaQueryList;
+  isMobile = signal(false);
 
   constructor(private media: MediaMatcher,
     private cdr: ChangeDetectorRef,
@@ -29,12 +30,17 @@ export class LayoutComponent {
     this.mobileQuery.addListener(this.handleMobileQueryChange);
   }
 
+
+
+
+
   someMethod() {
     this.trigger.openMenu();
   }
 
   handleMobileQueryChange = () => {
-    console.log('Media query changed.');
+    console.log('Media query changed Mobile.');
+    this.isMobile.set(true);
     this.collapsed.set(true);
     this.cdr.detectChanges(); // Ensure change detection is run
   }
@@ -42,6 +48,8 @@ export class LayoutComponent {
   sidenavWidth = computed(() => this.collapsed() ? '65px' : '250px');
 
 
+
+  displayBlurCover = computed(() => this.sidenavWidth() == '250px' && this.isMobile() == true ? 'block' : 'none');
 
   onLogout(){
     this.authService.logout();

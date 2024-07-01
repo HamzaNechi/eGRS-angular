@@ -17,6 +17,8 @@ import { SiteModule } from './site/site.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { VisiteModule } from './visite/visite.module';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ReclamationModule } from './reclamation/reclamation.module';
+import { AlertModule } from './alert/alert.module';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MatButtonModule,
     SiteModule,
     MatTooltipModule,
-    VisiteModule
+    VisiteModule,
+    ReclamationModule,
+    AlertModule
   ],
   providers: [
     provideAnimationsAsync(),

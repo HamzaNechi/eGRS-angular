@@ -1,74 +1,128 @@
-<div class="content-wrapper">
-  <div class="container-xxl flex-grow-1 container-p-y pt-4">
-    <div class="card card-main">
-      <div class="card-header p-3">
-        <div class="row">
-          <div class="col-lg-8 col-md-12 col-sm-12">
-            <h5 class="card-title">Liste des visites terrain</h5>
+
+<div class="container-visite">
+  <div class="title-card-visite">
+    <h4>Les visites terrain</h4>
+
+    <div class="search-field">
+      <input
+        type="text"
+        class="text-input"
+        placeholder="Chercher par code site"
+        [(ngModel)]="searchField"
+        (input)="searchByCodeSite()"/>
+    </div>
+      &nbsp;&nbsp;
+
+    <button type="button" (click)="exportToExcel()" class="excel-button">
+      <mat-icon class="excel-icon">get_app</mat-icon>Télécharger Excel</button>
+  </div>
+
+  <div class="main-container">
+    <div class="content-visite">
+      <div class="content-visite-item" *ngFor="let item of listVisites">
+        <!--card item-->
+        <div class="card">
+          <div class="container-image">
+            <img [src]="'http://localhost:8089/egrs/api/images/' + item.photoCompteur" class="card-img-top" alt="...">
           </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <!--form for search -->
-            <div class="input-group input-group-merge">
 
-              <input
-                type="text"
-                class="form-control"
-                id="basic-icon-default-fullname"
-                placeholder="Chercher par code site"
-                [(ngModel)]="searchField"
-                (input)="searchByCodeSite()"
-              />
-
-              <span class="input-group-text searchspan">
-                <mat-icon>search</mat-icon>
-              </span>
-            </div>
-            <!--end form-->
-          </div>
-        </div>
-
-      </div>
-      <div class="card-body">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12" style="padding-top: 20px;" *ngFor="let item of listVisites">
-              <!--card item-->
-              <div class="card">
-                <div class="container-image">
-                  <img [src]="'http://localhost:8089/egrs/api/images/' + item.photoCompteur" class="card-img-top" alt="...">
+          <div class="card-body">
+            <div class="info-visit">
+              <div class="row">
+                <div class="col">
+                  <h5 class="index-info"><i class="material-icons middle">energy_savings_leaf</i> {{ item['indexCompteur']}}</h5>
                 </div>
-
-                <div class="card-body">
-                  <div class="info-visit">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="index-info"><i class="material-icons middle">energy_savings_leaf</i> {{ item['indexCompteur']}}</h5>
-                      </div>
-                      <div class="col">
-                        <p class="date">{{ item['dateInsertion'] |  date:'dd-MM-yyyy'}}</p>
-                      </div>
-                    </div>
-
-                    <div class="wrapper">
-                      <div class="site">
-                        <div class="site-icon"><i class="material-icons">location_city</i></div>
-                        <p>{{ item['site']['siteCode'] }}</p>
-                      </div>
-                      <div class="responsable">
-                        <div class="responsable-icon"><i class="material-icons">manage_accounts</i></div>
-                        <p>{{ item['login']['login'] }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="footer">
-                  <button type="button" class="btn btn-danger" (click)="openDialogDelete(item.visiteId)"><i class="material-icons">delete</i> Supprimer</button>
-                  <button type="button" class="btn btn-warning" (click)="openDialogDetail(item)"><i class="material-icons">remove_red_eye</i></button>
+                <div class="col">
+                  <p class="date">{{ item['dateInsertion'] |  date:'dd-MM-yyyy'}}</p>
                 </div>
               </div>
-              <!--card item finish-->
+
+              <div class="wrapper">
+                <div class="site">
+                  <div class="site-icon"><i class="material-icons">location_city</i></div>
+                  <p>{{ item['site']['siteCode'] }}</p>
+                </div>
+                <div class="responsable">
+                  <div class="responsable-icon"><i class="material-icons">manage_accounts</i></div>
+                  <p>{{ item['login']['login'] }}</p>
+                </div>
+              </div>
             </div>
+          </div>
+
+
+          <div class="card-overlay">
+
+            <button class="card-button details-btn" (click)="openDialogDetail(item)">
+              <i class="material-icons">remove_red_eye</i>
+            </button>
+
+
+            <button class="card-button delete-btn" (click)="openDialogDelete(item.visiteId)">
+              <i class="material-icons">delete</i>
+            </button>
+
+          </div>
         </div>
+        <!--card item finish-->
+      </div>
+    </div>
+
+    <div class="filtre-sidebar">
+      <!-- Replace this with your filter content -->
+      <div class="filter">
+          <h3>Filter</h3>
+          <form (ngSubmit)="filterVisiteMethod(form)" #form="ngForm">
+
+            <div class="site">
+              <input
+              type="text"
+              class="text-input"
+              ngModel name="responsable" #responsable="ngModel"
+              [(ngModel)]="this.filterSpecification.responsable"
+              placeholder="Responsable"/>
+            </div>
+            <hr class="divider">
+            <div class="site">
+              <input
+              type="text"
+              class="text-input"
+              ngModel name="siteCode" #siteCode="ngModel"
+              [(ngModel)]="this.filterSpecification.siteCode"
+              placeholder="Code site"/>
+            </div>
+            <hr class="divider">
+            <div class="date">
+              <input
+              type="date"
+              class="text-input-date"
+              ngModel
+              name="dateInsertion"
+              [(ngModel)]="this.filterSpecification.dateInsertion"
+              #dateInsertion="ngModel"
+              />
+            </div>
+            <hr class="divider">
+            <div class="pourcentage">
+              <h5>valeur = {{ this.filterSpecification.index }} Kwh</h5>
+              <input type="range"
+              [min]="minIndex" step="1"  [max]="maxIndex"
+              ngModel
+              name="index"
+              #index="ngModel"
+              [value]="minIndex"
+              (ngModelChange)="onChangeRange(index.value)"
+              />
+            </div>
+
+
+            <div class="filter-action">
+              <button type="submit" class="btn btn-primary applique">Appliquer le filtre</button>
+
+              <button type="button" class="btn btn-danger reset" (click)="resetFiltre()">Supprimer le filtre</button>
+            </div>
+
+          </form>
       </div>
     </div>
   </div>

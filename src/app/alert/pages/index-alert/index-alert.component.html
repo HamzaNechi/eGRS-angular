@@ -1,0 +1,126 @@
+<div class="container">
+  <div class="title-card">
+      <h5>Les alerts générer par le systéme</h5>
+  </div>
+  <div class="content">
+      <div class="main-content">
+          <div class="carts-alert-container" >
+            <div class="cart-alert-item" *ngFor="let item of listAlerts">
+              <div class="card">
+                <h3 class="card__title">{{ item.alertTypes.description }}</h3>
+                <h4 class="card-login" *ngIf="item.alertTypes.description == 'Surconsommation d’énergie'">{{ item.difference | number : '.1-3'}} %</h4>
+                <p class="card__content" *ngIf="item.alertTypes.description == 'Surconsommation d’énergie'">
+                  <span class="card-title-content">{{ item.site.siteCode}}</span><br>
+                  La consommation attendu {{ item.requiredConsommation }}Kwh est {{ item.requiredConsommation > item.stegEstConsommation ? 'supérieure' : 'inférieure' }} au consommation trouvée {{ item.stegEstConsommation | number : '.1-3' }} Kwh
+                </p>
+
+
+                <p class="card__content" *ngIf="item.alertTypes.description == 'Site sans facturation réelle'">
+                  <span class="card-title-content">{{ item.site.siteCode}}</span><br>
+                  Un site sans facturation réelle est un site qui n'a pas reçu de facture réelle depuis plus de six mois.
+                </p>
+                <div class="card__date">
+                  {{ item.dateAlert |  date:'dd-MM-yyyy'}}
+                </div>
+
+                <div class="card__arrow" [ngClass]="getCardArrowClass(item.difference)">
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+
+
+      <div class="sidebar">
+          <!-- Replace this with your filter content -->
+          <div class="filter">
+              <h3>Filter</h3>
+              <form (ngSubmit)="onSubmitFilterForm(form)" #form="ngForm">
+                <div class="type">
+                  <div class="form-check">
+                    <input
+                    class="form-check-input"
+                     type="radio" name="typeAlert"
+                     [value]="1"
+                     [(ngModel)]="filterForm.type"
+                     (ngModelChange)="updateChoiceType(1)"
+                     id="flexRadioDefault1">
+                    <label class="form-check-label">
+                      Site sans facturation réelle
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                    class="form-check-input"
+                    type="radio"
+                    name="typeAlert"
+                     [value]="2"
+                     [(ngModel)]="filterForm.type"
+                     (ngModelChange)="updateChoiceType(2)"
+                    id="flexRadioDefault2">
+                    <label class="form-check-label">
+                      Surconsommation d’énergie
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input"
+                    type="radio"
+                    name="typeAlert"
+                    [value]="3"
+                     [(ngModel)]="filterForm.type"
+                     (ngModelChange)="updateChoiceType(3)"
+                    id="flexRadioDefault1">
+                    <label class="form-check-label">
+                      Tous
+                    </label>
+                  </div>
+                </div>
+                <hr class="divider">
+                <div class="site">
+                  <input
+                  type="text"
+                  class="text-input"
+                  ngModel name="siteCode" #siteCode="ngModel"
+                  [(ngModel)]="filterForm.codeSite"
+                  placeholder="Code site"/>
+                </div>
+                <hr class="divider">
+                <div class="date">
+                  <input
+                  type="date"
+                  class="text-input-date"
+                  ngModel
+                  [(ngModel)]="filterForm.dateAlert"
+                  name="dateAlert"
+                  #dateAlert="ngModel"
+                  />
+                </div>
+                <hr class="divider" *ngIf="!hideRangePourcentage">
+                <div class="pourcentage" *ngIf="!hideRangePourcentage">
+                  <h5>valeur = {{ filterForm.pourcentage }}%</h5>
+                  <input type="range"
+                  min="20" step="1"  max="100" value="40"
+                  ngModel
+                  name="pourcentage"
+                  #pourcentage="ngModel"
+                  [value]="40"
+                  [(ngModel)]="filterForm.pourcentage"
+                  (ngModelChange)="updateValuePourcentage(pourcentage.value)"
+                  />
+                </div>
+
+
+                <div class="filter-action">
+                  <button type="submit" class="btn btn-primary applique">Appliquer le filtre</button>
+
+                  <button type="button" class="btn btn-danger reset" (click)="resetFilter()">Supprimer le filtre</button>
+                </div>
+
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

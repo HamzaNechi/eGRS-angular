@@ -3,15 +3,20 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { AccessAdminError } from '../core/custom-errors';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  private baseUrl : string;
 
-  baseUrl= "http://localhost:8089/egrs/auth/login";
+  constructor(private http: HttpClient, private router: Router) {
+    this.baseUrl= `${environment.apiURL}auth/login`;
+  }
+
+
 
   login(email: string, password: string) {
     const reqheaders = new HttpHeaders({

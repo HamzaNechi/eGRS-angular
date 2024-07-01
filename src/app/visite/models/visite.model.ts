@@ -4,7 +4,6 @@ export interface VisiteModel{
   photoCompteur: string,
   dateInsertion: Date,
   commentaire :string,
-  tag: string,
   login :{
     login: string,
   },
@@ -13,5 +12,7 @@ export interface VisiteModel{
   },
   otn: number,
   oo: number,
-  tt: number
+  tt: number,
+  indexTT : number,
+  indexOO: number
 }

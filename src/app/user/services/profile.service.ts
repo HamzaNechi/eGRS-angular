@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Profile } from '../models/profile.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -9,30 +10,30 @@ import { Observable } from 'rxjs';
 export class ProfileService {
 
   profileList : Profile[] = [];
+  private baseUrl : string;
 
-
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) {
+    this.baseUrl = `${environment.apiURL}profile/`;
+   }
 
 
 
   getAllProfile() : Observable<any>{
     const reqheaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YUFkbWluIiwiaWF0IjoxNzE2ODk3MjYyLCJleHAiOjE3MTc1MDIwNjJ9.acQ6HgnAoI1hxHlP2Qtfw9S3iSfaECYkZ0quIYMrHq8`
     })
 
-    return this.http.get("http://127.0.0.1:8089/egrs/profile/", {headers : reqheaders}).pipe();
+    return this.http.get(this.baseUrl, {headers : reqheaders}).pipe();
   }
 
 
   public updateProfile(profile : Profile){
     const reqheaders = new HttpHeaders({
       'Content-Type' : 'application/json',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YUFkbWluIiwiaWF0IjoxNzE2ODA3MDczLCJleHAiOjE3MTc0MTE4NzN9.MdkZE83HzHxmxo4MNNr6Wcm0_5uQ2NIMiFUUQniz_4c`
     });
 
     return this.http.put(
-      "http://localhost:8089/egrs/profile/",
+      this.baseUrl,
       profile ,
       {headers : reqheaders, observe: 'response'}
     ).pipe();

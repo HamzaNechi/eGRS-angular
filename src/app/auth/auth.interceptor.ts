@@ -13,6 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(req);
     }else{
       if (token) {
+        console.log('token injected en req auth/login/interceptor');
         const authReq = req.clone({
           setHeaders: {
             Authorization: `Bearer ${token}`

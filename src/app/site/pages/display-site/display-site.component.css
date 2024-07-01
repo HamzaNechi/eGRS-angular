@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');h6, .h6, h5, .h5, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-weight: 300;
@@ -864,15 +864,16 @@ th {
 
 .action_button {
   border-radius: 50%; /* 100% can also be used for perfect circles */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 2px 2px;
   width: 30px;
   height: 30px;
+  background-color: #10529f;
+  color: white;
+  border-color: #10529f;
 }
 
 .action_button .icon {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .form-control:focus {
@@ -881,3 +882,99 @@ th {
 }
 
 
+.clickable-icon {
+  color: #000;
+  position: relative; /* Nécessaire pour positionner l'infobulle */
+}
+
+.clickable-icon:hover {
+  cursor: pointer;
+  color: #0055ff;
+}
+
+/* Style de base pour l'infobulle */
+.tooltip {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Positionnement */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Place l'infobulle au-dessus de l'icône */
+  left: 50%;
+  margin-left: -100px; /* Centrer l'infobulle */
+
+  /* Animation */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Flèche de l'infobulle */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* En bas de l'infobulle */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+/* Afficher l'infobulle au survol */
+.clickable-icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+
+.container-site{
+  margin: 30px 0px;
+  width: 100%;
+}
+
+.title-card-site {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 13px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+
+  > h4 {
+    flex: 1;
+    text-align: start;
+  }
+
+
+  > div {
+    flex: 1;
+  }
+}
+
+.content-site {
+  background-color: #ffffff;
+  padding: 13px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+@media (max-width: 576px) {
+  .title-card-site {
+      flex-direction: column;
+  }
+}

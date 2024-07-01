@@ -28,7 +28,7 @@ export class LoginComponent {
     if(this.username != '' && this.password != ''){
       this.authService.login(this.username, this.password).subscribe({
         next: (response : any) => {
-          this.router.navigateByUrl('/home', { replaceUrl: true });
+          this.router.navigateByUrl('/home/dashboard', { replaceUrl: true });
         },
         error: (error :any) =>{
           if(error instanceof AccessAdminError){

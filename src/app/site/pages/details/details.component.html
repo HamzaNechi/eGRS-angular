@@ -69,7 +69,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item" *ngIf="this.site?.statusId?.description !== 'Résilié'">
                 <ul class="list-group">
                   <li class="d-flex justify-content-between">
                     <h6>Facture réelle</h6>

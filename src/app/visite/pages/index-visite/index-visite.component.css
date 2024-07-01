@@ -64,6 +64,7 @@
 .card-main{
   height: auto;
   padding-bottom: 40px;
+  border-color: white;
 }
 
 
@@ -95,24 +96,13 @@
 }
 
 .card-body {
-  flex: 1;
   padding-bottom: 0px;
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-  background-color: #f8f9fa;
-}
-
-.footer .btn {
-  border-radius: 0; /* pour que les boutons remplissent toute la largeur */
-  margin: 0; /* pour éviter les marges supplémentaires */
-}
 
 
-.btn-danger {
+
+.btn-warning {
   flex: 1;
   background-color: #dc3545;
   color: #fff;
@@ -128,11 +118,310 @@
 }
 
 
-.form-control:focus {
-  border-color: #ff6200; /* Couleur de la bordure en focus */
-  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 72, 0, 0.6); /* Effet d'ombre */
+
+
+
+
+
+
+
+
+.container-visite{
+  margin: 30px 0px;
+  width: 100%;
 }
 
-.searchspan{
-  background-color: white;
+.title-card-visite {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 13px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+
+  > h4 {
+    flex: 4;
+    text-align: start;
+  }
+
+
+  > div {
+    flex: 1;
+  }
 }
+
+
+.main-container{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.filtre-sidebar{
+  flex: 1;
+  background-color: #ffffff;
+  padding: 13px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: start;
+}
+
+.content-visite {
+  flex: 4;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  padding: 13px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-right: 10px;
+}
+
+
+.content-visite-item {
+  flex: 1 0 31%;
+  margin: 10px;
+}
+
+
+.text-input {
+  padding: 7px;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fbfbfb;
+  border: 2px solid transparent;
+  height: 36px;
+  width: 100%;
+  box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+  :focus{
+      border: 2px solid #000;
+      border-radius: 4px;
+  }
+}
+
+
+
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-button {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-button i.material-icons {
+  font-size: 20px;
+}
+
+.card:hover .card-content {
+  filter: blur(4px);
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.details-btn:hover {
+  background-color: cornflowerblue;
+}
+
+.delete-btn:hover {
+  background-color: rgb(183, 35, 35);
+}
+
+
+
+/* your-component.css */
+.excel-button {
+  background-color: #217346; /* Couleur verte pour rappeler Excel */
+  color: white; /* Couleur du texte blanche */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 7px;
+  border-color: #217346;
+}
+
+
+.excel-icon {
+  margin-top: 8px;
+  margin-right: 8px; /* Espacement entre l'icône et le texte */
+  font-size: 18px; /* Taille de l'icône */
+}
+
+
+/********** Css Form filter ****/
+
+.filter .filter-action{
+  padding-top: 50px;
+
+  text-align: center;
+
+  > .applique{
+    background-color: #218271;
+    border-color: #218271;
+    margin-bottom: 10px;
+  }
+
+  > .reset{
+    background-color: #f35454;
+    border-color: #f35454;
+  }
+}
+
+.filter .type{
+  padding: 10px;
+}
+
+
+.filter .date{
+  padding: 10px;
+}
+
+
+.filter .site{
+  padding: 10px;
+}
+
+
+.filter .pourcentage{
+  padding: 10px;
+}
+
+
+
+.text-input-date {
+  padding: 7px;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fbfbfb;
+  border: 2px solid transparent;
+  height: 36px;
+  width: 98%;
+  box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+  :focus{
+      border: 2px solid #000;
+      border-radius: 4px;
+  }
+}
+
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #d1beee;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -4px; /* Centers thumb on the track */
+  background-color: #808080;
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid #808080;
+  outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #d1beee;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: #808080;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb{
+  outline: 3px solid #808080;
+  outline-offset: 0.125rem;
+}
+/************* End css form filter *****/
+
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .content-visite-item {
+      flex: 1 0 21%; /* 3 colonnes par ligne */
+      padding: 10px;
+  }
+
+  .main-container{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 992px) {
+  .content-visite-item {
+      flex: 1 0 45%; /* 2 colonnes par ligne */
+      padding: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .title-card-visite {
+      flex-direction: column;
+  }
+  .content-visite-item {
+      flex: 1 0 100%; /* 1 colonne par ligne */
+  }
+}
+
